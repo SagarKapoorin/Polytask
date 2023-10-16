@@ -14,6 +14,8 @@ var search = () => {
                     document.getElementById('phonetics').innerHTML = data[0].phonetics[0].text;
                     definitions = document.getElementById('definition-container')
                     definitions.innerHTML = ""
+                    // data[0].meanings[0].definitions[j0].definition
+                    //data[0].meanings[0].partOfSpeech
                     for (let i = 0; i < data[0].meanings.length; i++) {
                         definitions.innerHTML += `<div class = "meaning-container"></div>`
                         meanings = document.getElementsByClassName('meaning-container');
@@ -25,6 +27,7 @@ var search = () => {
                 }
             })
     } else {
+        //reseting if empty
         document.getElementById('word').innerHTML = "--"
         document.getElementById('phonetics').innerHTML = "--"
         definitions = document.getElementById('definition-container').innerHTML = ""
