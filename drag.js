@@ -14,23 +14,20 @@ function dragStart(element) {
 		draggedElement.parentNode.style.top = "0px";
 
 	//get the position of the cursors
+	//event.pagex is use to get value of element x value
+	//parse int helps in converting into integerr
+	//parentNode get parent
 	xOffset = event.pageX - parseInt(draggedElement.parentNode.style.left);
 	yOffset = event.pageY - parseInt(draggedElement.parentNode.style.top);
-
+	//console.log( "first"+xOffset+ " "+yOffset);
 	//adds eventListeners and remove them after drag is finished
 	//the reason we can't just add eventListeners to the elements that going to be drags is because if the mouse moves too fast it goes out of the element and stops dragging.
 	document.addEventListener("mousemove", drag);
+
+	//when mouse pressed and draged 
 	document.addEventListener("mouseup", endDrag);
+	//when mouse released and draged
 
-	//increase and size and box shadow when dragging
-	draggedElement.parentNode.style.boxShadow = "5px 5px 15px var(--shadow-dark)";
-	draggedElement.parentNode.style.transform = "scale(1.01)";
-
-	//make the iframes have no pointer events so you can still drag when over them
-	elements = document.getElementsByTagName("iframe");
-	for (let i = 0; i < elements.length; i++) {
-		elements[i].classList.add("no-pointer");
-	}
 }
 
 function drag(e) {
@@ -43,11 +40,5 @@ function drag(e) {
 
 //ends the drag and removes the eventListeners
 function endDrag(e) {
-	document.removeEventListener("mousemove", drag);
-	draggedElement.parentNode.style.boxShadow = "5px 5px 15px var(--shadow)"
-	draggedElement.parentNode.style.transform = "scale(1)"
-	elements = document.getElementsByTagName("iframe");
-	for (let i = 0; i < elements.length; i++) {
-		elements[i].classList.remove("no-pointer");
-	}
+	document.removeEventListener("mousemove", drag);//removing listener
 }
